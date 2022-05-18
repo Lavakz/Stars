@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Lab 4</title>
+
+	<!--   Begin GLSL 3.0 Shader code -->
+	<script id="vertex-shader" type="x-shader/x-vertex">
+		#version 300 es
+		
+		in vec2 a_coords;
+		uniform mat4 u_transform;
+
+		void main() {
+            vec4 transformedHCoord = u_transform * vec4(a_coords, 0.0, 1.0);
+            gl_Position = vec4(transformedHCoord.xy, 0.0, 1.0);			
+		}
+	</script>
+
+	<script id="fragment-shader" type="x-shader/x-fragment">
+		#version 300 es
+		precision mediump float;
+
+		out vec3 f_color;
+		uniform vec3 color;
+
+		void main() {
+			f_color = color;
+		}
+	</script>
+	<!--   End GLSL 3.0 Shader code -->
+
+	<!--   JS include files -->
+	<script type="text/javascript" src="CS371utils.js"></script>
+	<script type="text/javascript" src="Lab4.js"></script>
+</head>
+
+<body onload="init();">
+	<h2>Lab 4 by Zach La Vake</h2>
+	<canvas id="gl-canvas" width="600" height="600">>
+		Oops ... your browser doesn't support the HTML5 canvas element
+	</canvas>
+	<input type="button" value="Pause" onclick="pauseButton()">
+</body>
+</html>
